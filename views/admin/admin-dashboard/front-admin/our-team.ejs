@@ -1,37 +1,24 @@
 <%- include('layout/header'); -%>
- <div class="heading-row mb-20">
+  <div class="heading-row mb-20">
     <div class="row align-item-center">
-       <div class="col-lg-6">
-          <h3 class="page-title"><span class="page-title-icon bg-gradient-primary text-white mr-2"><i class="mdi mdi-home"></i></span> Our Team </h3>
-       </div>
-        <div class="col-lg-6">
-         <div class="text-right">
-           <div>
-             <a href="add-new-member" class="btn btn-common bg-gradient-primary">Add new Member</a>
-           </div>
-         </div>
-       </div>
+      <div class="col-lg-6">
+        <h3 class="page-title"><span class="page-title-icon bg-gradient-primary text-white mr-2"><i
+              class="mdi mdi-home"></i></span> Our Team </h3>
+      </div>
+      <div class="col-lg-6">
+        <div class="text-right">
+          <div>
+            <a href="add-new-member" class="btn btn-common bg-gradient-primary">Add new Member</a>
+          </div>
+        </div>
+      </div>
 
-       
-    
-  </div>
+    </div>
   </div>
   <div class="row">
-    
     <div class="col-lg-12 grid-margin stretch-card">
-      
-      <div class="card"> 
+      <div class="card">
         <div class="card-body table-responsive">
-          <% if(success_msg!=undefined && success_msg !='' ){ %>
-                                <div class="alert alert-success text-center  flash_msg ">
-                                    <%= success_msg %>
-                                </div>
-                         <% }%>
-                          <% if(err_msg!=undefined && err_msg!=''){ %>
-                                <div class="alert alert-danger text-center  succ_flash_msg">
-                                    <%= err_msg %>
-                                </div>
-                         <% }%>
           <table class="table">
             <thead>
               <tr>
@@ -46,42 +33,44 @@
               </tr>
             </thead>
             <tbody>
-
-              <% var i=1; if(TeamData.length>0){ 
-               TeamData.forEach(function(TeamData){  
-              %> 
-              <tr>
-                <td><%- i; %></td>
-                <td>
-                  <div class="normal-img">
-                    <img src="/home/team/<%= TeamData.member_image %>">
-                  </div>
-                </td>
-                <td><%= TeamData.name %></td>
-                <td><%= TeamData.designation %></td>
-                <td><%  var text = TeamData.content;
-                 if(text != '' && text != null){
-                  var con= text.replace(/(<([^>]+)>)/ig,"");
-                }else{
-                var con='--';
-              }
-                    %>
-                    <%- con%>
+              <% var i=1; if(TeamData.length> 0){
+                TeamData.forEach(function(member){
+                %>
+                <tr>
+                  <td>
+                    <%- i %>
                   </td>
-                <td><%= TeamData.linkedin_url %></td>
-                <td><%= TeamData.status %></td>
-                 <td>
-                  <div class="edit-icons">
-                   
-                    <a href="edit-member?id=<%= TeamData._id %>" data-toggle="tooltip" data-placement="top" title="Edit"><i class="mdi mdi-pencil"></i></a>
-                    <a href="delete-team-member?id=<%= TeamData._id %>" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-close"></i></a>
-                  </div>
-                </td>
-              </tr>
+                  <td>
+                    <div class="normal-img">
+                      <img src="/home/team/<%=member.member_image%>">
+                    </div>
+                  </td>
+                  <td>
+                    <%-member.name%>
+                  </td>
+                  <td>
+                    <%-member.designation%>
+                  </td>
+                  <td>
+                    <%-member.content%>
+                  </td>
+                  <td>
+                    <%-member.linkedin_url%>
+                  </td>
+                  <td>
+                    <%-member.status%>
+                  </td>
+                  <td>
+                    <div class="edit-icons">
 
-              <% i++; }) } %>
-
-                
+                      <a href="edit-member?id=<%=member._id%>" data-toggle="tooltip" data-placement="top"
+                        title="Edit"><i class="mdi mdi-pencil"></i></a>
+                      <a href="/delete-team-member?id=<%=member._id%>" data-toggle="tooltip" data-placement="top"
+                        title="Delete"><i class="mdi mdi-close"></i></a>
+                    </div>
+                  </td>
+                </tr>
+                <% i++; }) } %>
             </tbody>
           </table>
         </div>
@@ -89,10 +78,9 @@
     </div>
   </div>
 
-           
-<%- include('layout/footer'); -%>
- <script>
-$(document).ready( function () {
-  $('.table').DataTable();
-} );
-</script>
+  <%- include('layout/footer'); -%>
+    <script>
+      $(document).ready(function () {
+        $('.table').DataTable();
+      });
+    </script>

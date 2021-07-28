@@ -48,9 +48,9 @@ const submitWallet = async (req, res) => {
         let created = await userServices.createAtTimer();
         let address = await blockchainServices.checkWalletPrivate(user_passphrase);
         let dummyUser = await userServices.checkUserId(user_id);
-        let status = await blockchainServices.addARTwallet(dummyUser.email, address);
-        console.log(status);
-        if(status == 1){
+        // let status = await blockchainServices.addARTwallet(dummyUser.email, address);
+        // console.log(status);
+        // if(status == 1){
             let UserwalletData = await blockchainServices.userWalletEntry(user_id, address, hash, created);
             if (UserwalletData) {
                 let walletData = blockchainServices.userWalletFindWallet(address);
@@ -89,11 +89,11 @@ const submitWallet = async (req, res) => {
                 req.flash('err_msg', 'Something went wrong.');
                 res.redirect('/Create-wallet-dash');
             }
-        }
-        else {
-            req.flash('err_msg', 'Something went wrong.');
-            res.redirect('/Create-wallet-dash');
-        }
+        // }
+        // else {
+        //     req.flash('err_msg', 'Something went wrong.');
+        //     res.redirect('/Create-wallet-dash');
+        // }
     }
     else {
         res.redirect('/verify-key');

@@ -1,108 +1,82 @@
 <%- include('layout/header'); -%>
- 
 
- <div class="page-header">
-      <h3 class="page-title">
-        <span class="page-title-icon bg-gradient-primary text-white mr-2">
-          <i class="mdi mdi-account-edit"></i>
-        </span> My Profile </h3>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-          <form action="/update_profile" method="POST" id="profile"  class="forms-sample">
-        <div class="card">
-           <div class="card-body">
-             <div class="row">
-               <div class="col-md-10 m-auto">
-                 <div>
-                   <div class="profile-form">
-                     <div class="form-group">
-                        <label>First Name</label>
 
-                       <input type="text" name="user_name" class="form-control" id="" placeholder="Name" data-rule-required="true" data-msg-required="Please enter name." value="<%- Name%>">
-                                  </div>
-                         <input type="hidden" name="id" value="<%- user_main_id%>">
-                  
-                      <div class="form-group">
-                        <label>Email ID</label>
-                         <input type="email" name="email" class="form-control" id="" placeholder="Email" data-rule-required="true" data-msg-required="Please enter email." value="<%- email%>" readonly>
-                      </div>
-                      <div class="form-group">
-                        <label>Phone No.</label>
-                         <input type="text" name="mobile" class="form-control" id="" placeholder="Phone" data-rule-required="true" data-msg-required="Please enter phone." value="<%- mobile%>">
-                      </div>
-                      <!-- <div class="form-group">
-                                <label>Profile Image</label>
-                                <p class="note"></p>
-                                 <div class="border-gray document-upload-box">
-                                       <div class="text-left">
-                                          <div class="uploader-img">
-                                            <% if(profile_image != '' && profile_image != null && profile_image != undefined){ %>
-                                              <img id="user_profile_image_preview" src="/upload_admin_profile/<%= profile_image%>" class="m-t-5" >
-                                            <% }else{ %>
-                                              <img id="user_profile_image_preview" src="front_admin/assets/images/other/user_default.png" class="m-t-5" >
-                                              <% } %>
-                                          </div>
-                                           <div class="input-group mb-3 mb-3 verification">
-                                              <input type="text" class="form-control" readonly="" id="text_img_name" data-rule-required="true" data-msg-required="Please select your Id.">
-                                              <span class="input-group-btn">
-                                                <span class="btn btn-common bg-gradient-primary btn-file1">
-                                                Upload 
-                                              
-                                              <% if(profile_image != '' && profile_image != null && profile_image != undefined){ %>
-                                                <input type="file" id="imgInp6" value="" name="profile_image" accept="image/*" onchange="readURL(this);" >
-                                                <input type="hidden" name="old_image" value="<%= profile_image%>">
-                                                <% }else{ %>
-                                                <input type="file" id="imgInp6" value="" name="profile_image" accept="image/*" onchange="readURL(this);"  data-rule-required="true" data-msg-required="Please select image."> <% } %>
-                                                 
-                                              
-                                                </span>   
-                                              </span>
-                                            
-                                           </div>
-                                       </div>
-                                  </div>
-                              </div> -->
-                      <div class="popup-btn text-center">
-                          <button type="submit" class="btn btn-common bg-gradient-primary">Update</button>
-                        <a href="main-dashboard" class="btn btn-common bg-gradient-primary">Cancel</a>
-                      </div>
-                   </div>
-                 </div>
-               </div>
-             </div>
-           </div>
+  <div class="page-header">
+    <h3 class="page-title">
+      <span class="page-title-icon bg-gradient-primary text-white mr-2">
+        <i class="mdi mdi-account-edit"></i>
+      </span> My Profile
+    </h3>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-8 m-auto">
+              <div>
+                <form action="/update_profile" method="POST" id="profile" class="forms-sample">
+                  <div class="profile-form">
+                    <div class="form-group">
+                      <label>First Name</label>
+                      <input type="text" name="user_name" class="form-control" placeholder="Enter First Name"
+                        value="<%- Name%>">
+                    </div>
+
+                    <div class="form-group">
+                      <label>Email ID</label>
+                      <input type="email" name="email" class="form-control" placeholder="Enter Email ID"
+                        data-rule-required="true" data-msg-required="Please enter email." value="<%- email%>">
+                    </div>
+
+                    <div class="form-group">
+                      <label>Phone No.</label>
+                      <input type="text" name="mobile" class="form-control" id="" placeholder="Phone"
+                        data-rule-required="true" data-msg-required="Please enter phone." value="<%- mobile%>">
+                    </div>
+
+                    <div class="popup-btn text-center">
+                      <button type="submit" class="btn btn-common bg-gradient-primary">Update</button>
+                      <a href="main-dashboard" class="btn btn-common bg-gradient-primary">Cancel</a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-      </form>
       </div>
     </div>
+  </div>
 
 
-           
-<%- include('layout/footer'); -%>
 
 
-<script src="admin_assets/js/jquery.validate.min.js"></script>
-  <script type="text/javascript">
 
-              //  $(document).ready(function (){
+  <%- include('layout/footer'); -%>
 
 
-  //       var input = '<%= profile_image%>';
-  // var src = '/upload_admin_profile/'+input;
- 
-  $('#user_profile_image_preview').attr('src', src);
+    <script src="admin_assets/js/jquery.validate.min.js"></script>
+    <script type="text/javascript">
 
-               $('#profile').validate({
-                     onfocusout: function(element) {
-                           this.element(element);
-                     },
-                     errorClass: 'error_validate',
-                     errorElement:'span',
-                     highlight: function(element, errorClass) {
-                      $(element).removeClass(errorClass);
-                     }
-                   });
+      //  $(document).ready(function (){
+
+
+      //       var input = '<%= profile_image%>';
+      // var src = '/upload_admin_profile/'+input;
+
+      $('#user_profile_image_preview').attr('src', src);
+
+      $('#profile').validate({
+        onfocusout: function (element) {
+          this.element(element);
+        },
+        errorClass: 'error_validate',
+        errorElement: 'span',
+        highlight: function (element, errorClass) {
+          $(element).removeClass(errorClass);
+        }
+      });
 
               //  });
-</script>
+    </script>

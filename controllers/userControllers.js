@@ -133,22 +133,22 @@ const submitForgot = async (req, res) => {
 }
 
 const submitUser = async (req, res) => {
-    if(req.body['g-recaptcha-response'] == undefined || req.body['g-recaptcha-response'] == '' || req.body['g-recaptcha-response'] == null){
-        req.flash('err_msg', 'Please select captcha first.');
-        res.redirect('/Signup');
-    }
-    else{
-        const secretKey = "6LcQx_AaAAAAAJmTY794kuLiHyURsR_uu-4Wqixg";
+    // if(req.body['g-recaptcha-response'] == undefined || req.body['g-recaptcha-response'] == '' || req.body['g-recaptcha-response'] == null){
+    //     req.flash('err_msg', 'Please select captcha first.');
+    //     res.redirect('/Signup');
+    // }
+    // else{
+    //     const secretKey = "6LcQx_AaAAAAAJmTY794kuLiHyURsR_uu-4Wqixg";
 
-        const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+    //     const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
     
-        request(verificationURL, async function(error, response, body2) {
-            let body = JSON.parse(body2);
+    //     request(verificationURL, async function(error, response, body2) {
+    //         let body = JSON.parse(body2);
     
-            if(error && !body.success) {
-                req.flash('err_msg', 'Failed captcha verification.');
-                res.redirect('/Signup');
-            }else{
+    //         if(error && !body.success) {
+    //             req.flash('err_msg', 'Failed captcha verification.');
+    //             res.redirect('/Signup');
+    //         }else{
                 let user = await userServices.checkUser(req.body.email);
                 if (user) {
                     req.flash('err_msg', 'Email already exists. Please enter another email.');
@@ -192,9 +192,9 @@ const submitUser = async (req, res) => {
                         res.redirect('/Signup');
                     }
                 }
-            }
-        })
-    }
+    //         }
+    //     })
+    // }
 }
 
 const addTwoUser = async (req, res) => {
