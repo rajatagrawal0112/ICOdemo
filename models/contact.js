@@ -4,145 +4,145 @@ const validator = require('validator');
 
 /**********RegistrationSchema**********/
 var RegistrationSchema = mongoose.Schema({
-   
-    name:{
-        type:String
+
+    name: {
+        type: String
     },
-    first_name:{
-        type:String
+    first_name: {
+        type: String
     },
 
-    last_name:{
-        type:String
+    last_name: {
+        type: String
     },
-    email:{
-        type:String,
-        required:true,
-        trim:true,
-        unique:true,
-        validate:{
+    email: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true,
+        validate: {
 
-            validator:validator.isEmail,
-            message:'{VALUE} Entered Invalid Email'
+            validator: validator.isEmail,
+            message: '{VALUE} Entered Invalid Email'
         }
 
     },
-    email_verify_status:{
+    email_verify_status: {
 
-        type:String
+        type: String
 
     },
-    mobile_no:{
+    mobile_no: {
 
-        type:String,
-        default:null
+        type: String,
+        default: null
     },
-    address:{
+    address: {
 
-        type:String,
-        default:null
+        type: String,
+        default: null
     },
-    user_address:{
+    user_address: {
 
-        type:String,
-        default:null
+        type: String,
+        default: null
     },
-    country:{
+    country: {
 
-        type:String,
-        default:null
+        type: String,
+        default: null
     },
-    state:{
+    state: {
 
-        type:String,
-        default:null
+        type: String,
+        default: null
     },
-    city:{
+    city: {
 
-        type:String,
-        default:null
+        type: String,
+        default: null
     },
-    dob:{
+    dob: {
 
-        type:String,
-        default:null
+        type: String,
+        default: null
     },
-    password:{
-        type:String,
-        
+    password: {
+        type: String,
+
     },
 
-    created_at: { 
-                    type: String
-                },
-    deleted_at: { 
-                    type: String,
-                    default: null 
-                },
+    created_at: {
+        type: String
+    },
+    deleted_at: {
+        type: String,
+        default: null
+    },
     deleted_by: {
 
-            type:String,
-            default: null 
+        type: String,
+        default: null
     },
 
     updated_at: {
 
-            type: String,
-            default: null
+        type: String,
+        default: null
     },
-    status:{
+    status: {
 
-        type:String,
+        type: String,
         enum: ['active', 'inactive'],
-        default:'active'
+        default: 'active'
 
     },
-    deleted:{
+    deleted: {
 
-         type:String,
-         enum: ['0', '1'],
-         default:'0'
+        type: String,
+        enum: ['0', '1'],
+        default: '0'
     },
-    profile_image:{
+    profile_image: {
 
-        type:String,
-
-    },
-     dataURL:{
-
-        type:String,
+        type: String,
 
     },
-     qr_secret:{
+    dataURL: {
 
-        type:String,
-
-    },
-     qr_status:{
-
-        type:String,
+        type: String,
 
     },
-    ref_code:{
+    qr_secret: {
 
-        type:String,
-
-    },
-    ref_from:{
-
-        type:String,
+        type: String,
 
     },
-    otp:{
+    qr_status: {
 
-        type:String,
+        type: String,
 
     },
-    auth:{
+    ref_code: {
 
-        type:String,
+        type: String,
+
+    },
+    ref_from: {
+
+        type: String,
+
+    },
+    otp: {
+
+        type: String,
+
+    },
+    auth: {
+
+        type: String,
         enum: ['email', '2fa'],
-        default:'email'
+        default: 'email'
     },
     // link_status:{
     //     type:String,
@@ -162,156 +162,151 @@ var RegistrationSchema = mongoose.Schema({
     //     }]
 });
 
-var Registration =  mongoose.model('User_registration', RegistrationSchema);
+var Registration = mongoose.model('User_registration', RegistrationSchema);
 
-
-var RWNsettingsSchema = mongoose.Schema({
-    token_name:{
-        type:String
+var ARTWsettingsSchema = mongoose.Schema({
+    token_name: {
+        type: String
     },
-    total_quantity:{
-        type:String
+    total_quantity: {
+        type: String
     },
-    etherValue:{
-       type:String
-    }, 
-    btcValue:{
-        type:String
+    etherValue: {
+        type: String
     },
-    usdValue:{
-        type:String
+    btcValue: {
+        type: String
     },
-    xrpValue:{
-       type:String
+    usdValue: {
+        type: String
     },
-    ltcValue:{
-       type:String
+    xrpValue: {
+        type: String
     },
-    dashValue:{
-       type:String
+    ltcValue: {
+        type: String
     },
-    bnbValue:{
-       type:String
+    dashValue: {
+        type: String
     },
-    updated_at:{
-        type:String
+    bnbValue: {
+        type: String
+    },
+    updated_at: {
+        type: String
     }
 })
 
-var Tokensettings =  mongoose.model('Tokensettings', RWNsettingsSchema);
+var Tokensettings = mongoose.model('Tokensettings', ARTWsettingsSchema);
 
 var RefCodeschema = mongoose.Schema({
-    my_ref_code:{
-        type:String
+    my_ref_code: {
+        type: String
     },
-    reg_ref_code:{
-        type:String
+    reg_ref_code: {
+        type: String
     },
-    status:{
-       type:String,
-       default:"Not used"
+    status: {
+        type: String,
+        default: "Not used"
     },
-    user_id:{
-        type:mongoose.Schema.Types.ObjectId,
+    user_id: {
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User_registration'
     }
 })
 
-var RefCode =  mongoose.model('RefCode', RefCodeschema);
+var RefCode = mongoose.model('RefCode', RefCodeschema);
 
 /**********UserwalletSchema**********/
 var Userwalletschema = mongoose.Schema({
-   
-    user_id:{
-        type:String
+
+    user_id: {
+        type: String
     },
-    wallet_address:{
-        type:String
+    wallet_address: {
+        type: String
     },
-    passphrase:{
-        type:String
+    passphrase: {
+        type: String
     },
-    created_at: { 
-                    type: String
-                },
-    deleted_at: { 
-                    type: String,
-                    default: null 
-                },
+    created_at: {
+        type: String
+    },
+    deleted_at: {
+        type: String,
+        default: null
+    },
     deleted_by: {
 
-            type:String,
-            default: null 
+        type: String,
+        default: null
     },
 
     updated_at: {
 
-            type: String,
-            default: null
+        type: String,
+        default: null
     },
-    status:{
+    status: {
 
-        type:String,
+        type: String,
         enum: ['active', 'inactive'],
-        default:'active'
+        default: 'active'
 
     },
-    deleted:{
-
-         type:String,
-         enum: ['0', '1'],
-         default:'0'
+    deleted: {
+        type: String,
+        enum: ['0', '1'],
+        default: '0'
     },
 });
 
-var Userwallet =  mongoose.model('User_wallet', Userwalletschema);
+var Userwallet = mongoose.model('User_wallet', Userwalletschema);
 
 /**********ImportwalletSchema**********/
 var ImportwalletSchema = mongoose.Schema({
-   
-    user_id:{
-        type:String
-    },
-    wallet_id:{
-        type:String
-    },
-   login_status:{
-        type:String
-    },
-    created_at: { 
-                    type: String
-                },
-    deleted_at: { 
-                    type: String,
-                    default: null 
-                },
-    deleted_by: {
 
-            type:String,
-            default: null 
+    user_id: {
+        type: String
+    },
+    wallet_id: {
+        type: String
+    },
+    login_status: {
+        type: String
+    },
+    created_at: {
+        type: String
+    },
+    deleted_at: {
+        type: String,
+        default: null
+    },
+    deleted_by: {
+        type: String,
+        default: null
     },
 
     updated_at: {
 
-            type: String,
-            default: null
+        type: String,
+        default: null
     },
-    status:{
-
-        type:String,
+    status: {
+        type: String,
         enum: ['active', 'inactive'],
-        default:'active'
-
+        default: 'active'
     },
-    deleted:{
+    deleted: {
 
-         type:String,
-         enum: ['0', '1'],
-         default:'0'
+        type: String,
+        enum: ['0', '1'],
+        default: '0'
     },
 });
 
-var Importwallet =  mongoose.model('import_wallet', ImportwalletSchema);
+var Importwallet = mongoose.model('import_wallet', ImportwalletSchema);
 
 /**********ImportwalletSchema**********/
 var TokendetailsSchema = mongoose.Schema({
@@ -322,183 +317,186 @@ var TokendetailsSchema = mongoose.Schema({
         unique: true,
         integer: true
     },
-    user_id:{
-        type:String
-    },
-    wallet_id:{
-        type:String
-    },
-    sender_wallet_address:{
-        type:String
-    },
-    receiver_wallet_address:{
-        type:String
-    },
-    hash:{
-        type:String
-    },
-    amount:{
-        type:String
-    },
-    payment_status:{
-        type:String
-    },
-    token_type:{
-        type:String
-    },
-  	block_id:{
-        type:String,
-         default: null 
-    },
-    transaction_type:{
-        type:String
-    },
-    referred_to_name:{
+    user_id: {
         type: String
     },
-    referred_to_email:{
+    wallet_id: {
+        type: String
+    },
+    sender_wallet_address: {
+        type: String
+    },
+    receiver_wallet_address: {
+        type: String
+    },
+    hash: {
+        type: String
+    },
+    amount: {
+        type: String
+    },
+    payment_status: {
+        type: String
+    },
+    token_type: {
+        type: String
+    },
+    block_id: {
+        type: String,
+        default: null
+    },
+    transaction_type: {
+        type: String
+    },
+    referred_to_name: {
+        type: String
+    },
+    referred_to_email: {
         type: String
     },
     bonus_reward: {
         type: String
     },
-    created_at: { 
-                    type: String
-                },
-    deleted_at: { 
-                    type: String,
-                    default: null 
-                },
+    created_at: {
+        type: String
+    },
+    deleted_at: {
+        type: String,
+        default: null
+    },
     deleted_by: {
 
-            type:String,
-            default: null 
+        type: String,
+        default: null
     },
 
     updated_at: {
 
-            type: String,
-            default: null
+        type: String,
+        default: null
     },
-    status:{
+    status: {
 
-        type:String,
+        type: String,
         enum: ['active', 'inactive'],
-        default:'active'
+        default: 'active'
 
     },
-    deleted:{
+    deleted: {
 
-         type:String,
-         enum: ['0', '1'],
-         default:'0'
+        type: String,
+        enum: ['0', '1'],
+        default: '0'
     },
 });
 
-var Tokendetails =  mongoose.model('token_details', TokendetailsSchema);
+var Tokendetails = mongoose.model('token_details', TokendetailsSchema);
 
 
 var OrderDeatailsSchema = mongoose.Schema({
 
-    user_id:{
-        type:mongoose.Schema.Types.ObjectId,
+    user_id: {
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User_registration'
     },
-    rwn_count:{
-        type:String
+    rwn_count: {
+        type: String
     },
-    rate_per_rwn:{
-        type:String
+    rate_per_rwn: {
+        type: String
     },
-    total_amnt:{
-        type:String
+    total_amnt: {
+        type: String
     },
-    trnsaction_Id:{
-        type:String
+    trnsaction_Id: {
+        type: String
     },
-    sender_wallet_address:{
-        type:String
+    sender_wallet_address: {
+        type: String
     },
-    rwn_wallet_address:{
-        type:String
+    rwn_wallet_address: {
+        type: String
     },
-    image:{
-        type:String
+    image: {
+        type: String
     },
-    payment_type:{
-        type:String
+    payment_type: {
+        type: String
     },
-    payment_status:{
-        type:String,
-        default:"Pending"
+    payment_status: {
+        type: String,
+        default: "Pending"
     },
-    created_at:{
-        type:String
+    created_at: {
+        type: String
     }
 });
 
-var OrderDetails =  mongoose.model('OrderDetails', OrderDeatailsSchema);
+var OrderDetails = mongoose.model('OrderDetails', OrderDeatailsSchema);
 
 var faqSchema = mongoose.Schema({
 
-    question:{
-        type:String
+    question: {
+        type: String
     },
-    answer:{
-        type:String
+    answer: {
+        type: String
     },
-    status:{
-        type:String,
-        default:'active'
+    status: {
+        type: String,
+        default: 'active'
     },
-    created_at:{
-        type:String
+    created_at: {
+        type: String
     },
-    deleted:{
-        type:String,
-        default:'0'
+    updated_at: {
+        type: String
+    },
+    deleted: {
+        type: String,
+        default: '0'
     }
 });
 
-var FAQ =  mongoose.model('faq', faqSchema);
+var FAQ = mongoose.model('faq', faqSchema);
 
 var contactSchema = mongoose.Schema({
 
-    name:{
-        type:String
+    name: {
+        type: String
     },
-    email:{
-        type:String
+    email: {
+        type: String
     },
-    number:{
-        type:String
+    number: {
+        type: String
     },
-    message:{
-        type:String,
-        default:'active'
+    message: {
+        type: String,
+        default: 'active'
     },
-    created_at:{
-        type:String
+    created_at: {
+        type: String
     },
-    deleted:{
-        type:String,
-        default:'0'
+    deleted: {
+        type: String,
+        default: '0'
     }
 });
 
-var ContactInfo =  mongoose.model('contact', contactSchema);
+var ContactInfo = mongoose.model('contact', contactSchema);
 
 module.exports = {
-    Registration : Registration,
-    Userwallet   : Userwallet,
-    Importwallet : Importwallet,
-    Tokendetails : Tokendetails,
-    OrderDetails : OrderDetails,
-    RefCode:RefCode,
-    Tokensettings:Tokensettings,
-    FAQ:FAQ,
-    ContactInfo:ContactInfo
- };
+    Registration: Registration,
+    Userwallet: Userwallet,
+    Importwallet: Importwallet,
+    Tokendetails: Tokendetails,
+    OrderDetails: OrderDetails,
+    RefCode: RefCode,
+    Tokensettings: Tokensettings,
+    FAQ: FAQ,
+    ContactInfo: ContactInfo
+};
 
 
 

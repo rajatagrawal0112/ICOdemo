@@ -6,116 +6,114 @@ const bcrypt = require('bcryptjs');
 
 /**How access and token works only we are perfoming just restructuring****/
 
-var AdminSchema =  new moongoose.Schema({
+var AdminSchema = new moongoose.Schema({
 
-    name:{
-        type:String,
-        required:true
+    name: {
+        type: String,
+        required: true
     },
 
-    email:{
-        type:String,
-        required:true,
-        trim:true,
-        unique:true,
-        validate:{
+    email: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true,
+        validate: {
 
-            validator:validator.isEmail,
-            message:'{VALUE} Entered Invalid Email'
+            validator: validator.isEmail,
+            message: '{VALUE} Entered Invalid Email'
         }
 
     },
-    mobile:{
+    mobile: {
 
-        type:String
+        type: String
     },
-    user_wallet:{
+    user_wallet: {
 
-        type:String
+        type: String
     },
-    passphrase:{
+    passphrase: {
 
-        type:String
+        type: String
     },
-    dataURL:{
+    dataURL: {
 
-        type:String,
-
-    },
-    qr_secret:{
-
-        type:String,
+        type: String,
 
     },
-     qr_status:{
+    qr_secret: {
 
-        type:String,
+        type: String,
 
     },
-    contract_address:{
+    qr_status: {
 
-        type:String
+        type: String,
+
+    },
+    contract_address: {
+
+        type: String
     },
 
-    profile_image:{
+    profile_image: {
 
         type: String
 
     },
-    password:{
-        type:String,
-        required:true
+    password: {
+        type: String,
+        required: true
     },
 
-    created_at: { 
-                    type: String,
-                    default: new Date()
-                },
-    
+    created_at: {
+        type: String,
+        default: new Date()
+    },
+
     created_by: {
 
-            type:Number,
-            default:0
+        type: Number,
+        default: 0
     },
 
     updated_at: {
 
-            type: String,
-            default: null
+        type: String,
+        default: null
     },
 
     updated_by: {
 
-            type:String,
-            default:0
+        type: String,
+        default: 0
     },
 
-    status:{
+    status: {
 
-        type:String,
-        default:'active'
+        type: String,
+        default: 'active'
 
     },
-    user_type:{
+    user_type: {
 
-        type:String,
+        type: String,
         enum: ['admin', 'manager'],
-        default:'manager'
+        default: 'manager'
 
     },
-    tokens:[{
-            access:{
+    tokens: [{
+        access: {
 
-                type: String,
-                required: true
-            },
-            token:{
-
-                type: String,
-                required: true
-            }
-
-        }]
+            type: String,
+            required: true
+        },
+        token: {
+            type: String,
+            required: true
+        }
+    }]
 });
 
 
@@ -128,11 +126,11 @@ var AdminSchema =  new moongoose.Schema({
 //     if(admin_details.isModified('password')){
 
 //         bcrypt.genSalt(10,(err,salt)=>{
-        
+
 //         bcrypt.hash(admin_details.password,salt,(err,hash)=>{
 
 //                 admin_details.password = hash;
-                
+
 //                 next();
 
 //             });
@@ -168,7 +166,7 @@ var AdminSchema =  new moongoose.Schema({
 //             if(res){
 
 //                 resolve(check);
-            
+
 //             } else {
 
 //                 reject(err);
@@ -194,7 +192,7 @@ var AdminSchema =  new moongoose.Schema({
 //         if(!check){
 
 //             return Promise.reject('Invalid User Found');
-        
+
 //         }
 
 //         return new Promise((resolve,reject)=>{
@@ -204,7 +202,7 @@ var AdminSchema =  new moongoose.Schema({
 //                 if(res){
 
 //                         bcrypt.genSalt(10,(err,salt)=>{
-            
+
 //                         bcrypt.hash(new_pwd,salt,(err,hash)=>{
 
 //                         new_pwd = hash;
@@ -216,11 +214,11 @@ var AdminSchema =  new moongoose.Schema({
 //                         resolve(check);
 //                     });
 
-                        
+
 //                 });
 
 //             });
-                
+
 //         } else {
 
 //                     reject(err);
@@ -230,7 +228,7 @@ var AdminSchema =  new moongoose.Schema({
 //     });
 
 // });
-        
+
 
 
 //     });
@@ -238,6 +236,6 @@ var AdminSchema =  new moongoose.Schema({
 // }
 
 
-var AdminInfo =  moongoose.model('tbl_super_admin',AdminSchema);
+var AdminInfo = moongoose.model('tbl_super_admin', AdminSchema);
 
-module.exports = {AdminInfo:AdminInfo};
+module.exports = { AdminInfo: AdminInfo };

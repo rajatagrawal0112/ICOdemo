@@ -164,3 +164,111 @@ ws5.onmessage = async (event) => {
         })
     }     
 };
+
+/**************DOGE - USDT***************/
+
+const ws6 = new WebSocket('wss://api.probit.com/api/exchange/v1/ws');
+
+ws6.onopen = () => {
+  const msg = {
+    type: 'subscribe',
+    channel: 'marketdata',
+    interval: 500,
+    market_id: 'DOGE-USDT',
+    filter: ['ticker']
+  };
+  ws6.send(JSON.stringify(msg));
+};
+
+ws6.onmessage = async (event) => {
+    let body_data = JSON.parse(event.data);
+    let token_val = await Tokensettings.findOne();
+    let updated_at = moment(new Date()).format('YYYY-MM-DD');    
+    if(body_data.status == "ok" && body_data.ticker && body_data.ticker.last ){
+        await Tokensettings.updateOne({'_id':token_val._id}, {$set: { 
+            'dogeValue': Math.round((parseFloat(token_val.usdValue)*(1 / parseFloat(body_data.ticker.last)))*1000000000)/1000000000, 
+            'updated_at' : updated_at }
+        })
+    }     
+};
+
+/**************POLKA - USDT***************/
+
+const ws7 = new WebSocket('wss://api.probit.com/api/exchange/v1/ws');
+
+ws7.onopen = () => {
+  const msg = {
+    type: 'subscribe',
+    channel: 'marketdata',
+    interval: 500,
+    market_id: 'DOT-USDT',
+    filter: ['ticker']
+  };
+  ws7.send(JSON.stringify(msg));
+};
+
+ws7.onmessage = async (event) => {
+    let body_data = JSON.parse(event.data);
+    let token_val = await Tokensettings.findOne();
+    let updated_at = moment(new Date()).format('YYYY-MM-DD');    
+    if(body_data.status == "ok" && body_data.ticker && body_data.ticker.last ){
+        await Tokensettings.updateOne({'_id':token_val._id}, {$set: { 
+            'polkaValue': Math.round((parseFloat(token_val.usdValue)*(1 / parseFloat(body_data.ticker.last)))*1000000000)/1000000000, 
+            'updated_at' : updated_at }
+        })
+    }     
+};
+
+/**************TRON - USDT***************/
+
+const ws8 = new WebSocket('wss://api.probit.com/api/exchange/v1/ws');
+
+ws8.onopen = () => {
+  const msg = {
+    type: 'subscribe',
+    channel: 'marketdata',
+    interval: 500,
+    market_id: 'TRX-USDT',
+    filter: ['ticker']
+  };
+  ws8.send(JSON.stringify(msg));
+};
+
+ws8.onmessage = async (event) => {
+    let body_data = JSON.parse(event.data);
+    let token_val = await Tokensettings.findOne();
+    let updated_at = moment(new Date()).format('YYYY-MM-DD');    
+    if(body_data.status == "ok" && body_data.ticker && body_data.ticker.last ){
+        await Tokensettings.updateOne({'_id':token_val._id}, {$set: { 
+            'tronValue': Math.round((parseFloat(token_val.usdValue)*(1 / parseFloat(body_data.ticker.last)))*1000000000)/1000000000, 
+            'updated_at' : updated_at }
+        })
+    }     
+};
+
+/**************XLM - USDT***************/
+
+const ws9 = new WebSocket('wss://api.probit.com/api/exchange/v1/ws');
+
+ws9.onopen = () => {
+  const msg = {
+    type: 'subscribe',
+    channel: 'marketdata',
+    interval: 500,
+    market_id: 'XLM-USDT',
+    filter: ['ticker']
+  };
+  ws9.send(JSON.stringify(msg));
+};
+
+ws9.onmessage = async (event) => {
+    let body_data = JSON.parse(event.data);
+    let token_val = await Tokensettings.findOne();
+    let updated_at = moment(new Date()).format('YYYY-MM-DD');    
+    if(body_data.status == "ok" && body_data.ticker && body_data.ticker.last ){
+        await Tokensettings.updateOne({'_id':token_val._id}, {$set: { 
+            'xlmValue': Math.round((parseFloat(token_val.usdValue)*(1 / parseFloat(body_data.ticker.last)))*1000000000)/1000000000, 
+            'updated_at' : updated_at }
+        })
+    }     
+};
